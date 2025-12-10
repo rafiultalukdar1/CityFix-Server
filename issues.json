@@ -1,0 +1,830 @@
+[
+  {
+    "title": "Streetlight Completely Out on Cedar Avenue Near Hospital",
+    "description": "The streetlight on Cedar Avenue near City Hospital has been completely out for over a week. Pedestrians and night-time commuters are facing severe visibility issues, increasing the risk of accidents. The lamp post shows signs of water seepage and exposed wiring. Immediate electrical inspection and repair are crucial to prevent harm.",
+    "category": "Streetlight",
+    "location": "Cedar Avenue, Near City Hospital",
+    "images": "https://i.ibb.co.com/60x4QspV/Streetlight-Completely-Out-on-Cedar-Avenue-Near-Hospital.png",
+    "priority": "high",
+    "isBoosted": false,
+    "status": "pending",
+    "submittedBy": "user_101",
+    "assignedStaff": null,
+    "upvotes": 32,
+    "organizer_name": "Arman Hossain",
+    "organizer_email": "arman.hossain01@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported streetlight completely out for several nights; requests urgent repair.",
+        "updatedBy": { "name": "Citizen A1", "role": "citizen" },
+        "timestamp": "2025-12-01T09:00:00Z"
+      }
+    ],
+    "createdAt": "2025-12-01T09:00:00Z"
+  },
+  {
+    "title": "Major Pothole on Maple Street Affecting Bus Traffic",
+    "description": "A large and deep pothole has formed on Maple Street near the bus terminal, causing damage to vehicles and frequent traffic delays. Heavy rain has worsened the situation, filling the pothole with water and making it nearly invisible to drivers. Immediate patching is required to avoid accidents and ensure smooth traffic flow.",
+    "category": "Road",
+    "location": "Maple Street, Near Bus Terminal",
+    "images": "https://i.ibb.co.com/5X5qX7Jj/Major-Pothole-on-Maple-Street-Affecting-Bus-Traffic.png",
+    "priority": "high",
+    "isBoosted": false,
+    "status": "pending",
+    "submittedBy": "user_102",
+    "assignedStaff": null,
+    "upvotes": 28,
+    "organizer_name": "Rafiq Ahmed",
+    "organizer_email": "rafiq.ahmed02@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported dangerous pothole causing vehicle damage; requests urgent patching.",
+        "updatedBy": { "name": "Citizen A2", "role": "citizen" },
+        "timestamp": "2025-12-01T10:30:00Z"
+      }
+    ],
+    "createdAt": "2025-12-01T10:30:00Z"
+  },
+  {
+    "title": "Overflowing Sewer at Oak Street Causing Health Concerns",
+    "description": "Sewage is overflowing from a manhole on Oak Street, spreading unpleasant odors and creating a severe health risk for residents, especially children playing nearby. The continuous overflow is affecting local businesses and sidewalks. Immediate cleaning, inspection, and possible pipe replacement are essential to maintain public safety.",
+    "category": "Drainage",
+    "location": "Oak Street, Sector 6",
+    "images": "https://i.ibb.co.com/V01NMC8x/Overflowing-Sewer-at-Oak-Street-Causing-Health-Concerns.png",
+    "priority": "high",
+    "isBoosted": false,
+    "status": "pending",
+    "submittedBy": "user_103",
+    "assignedStaff": null,
+    "upvotes": 35,
+    "organizer_name": "Sajid Rahman",
+    "organizer_email": "sajid.rahman03@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported sewer overflow causing health risk; urgent cleaning requested.",
+        "updatedBy": { "name": "Citizen A3", "role": "citizen" },
+        "timestamp": "2025-12-01T11:00:00Z"
+      }
+    ],
+    "createdAt": "2025-12-01T11:00:00Z"
+  },
+  {
+    "title": "Overflowing Garbage Bin Near Main Bus Stop",
+    "description": "The main garbage bin near the central bus stop is overflowing daily, causing waste to spread across the street and attracting insects. The accumulation poses hygiene hazards for commuters and nearby shops. A strict daily collection schedule and additional bins are recommended to manage waste properly.",
+    "category": "Waste",
+    "location": "Central Bus Stop, Downtown",
+    "images": "https://i.ibb.co.com/nq1gGZgH/Overflowing-Garbage-Bin-Near-Main-Bus-Stop.png",
+    "priority": "normal",
+    "isBoosted": true,
+    "status": "resolved",
+    "submittedBy": "user_104",
+    "assignedStaff": "Staff A",
+    "upvotes": 22,
+    "organizer_name": "Kamrul Islam",
+    "organizer_email": "kamrul.islam04@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported overflowing garbage bin; requests regular collection enforcement.",
+        "updatedBy": { "name": "Kamrul Islam", "role": "citizen" },
+        "timestamp": "2025-12-01T12:00:00Z"
+      },
+      {
+        "status": "in-progress",
+        "message": "Staff started working on the issue.",
+        "updatedBy": { "name": "Staff A", "role": "staff" },
+        "timestamp": "2025-12-03T09:00:00Z"
+      },
+      {
+        "status": "resolved",
+        "message": "Staff marked this issue as resolved after completing necessary actions.",
+        "updatedBy": { "name": "Staff A", "role": "staff" },
+        "timestamp": "2025-12-05T14:30:00Z"
+      }
+    ],
+    "createdAt": "2025-12-01T12:00:00Z"
+  },
+  {
+    "title": "Broken Footpath Tiles Along Willow Street",
+    "description": "Several tiles on the footpath of Willow Street are broken, creating trip hazards for pedestrians, particularly students and elderly residents. Poor lighting at night increases the risk of falls. Immediate footpath repair and proper lighting installation are advised to ensure safety.",
+    "category": "Footpath",
+    "location": "Willow Street, Near Elementary School",
+    "images": "https://i.ibb.co.com/4ZfBqTZt/Broken-Footpath-Tiles-Along-Willow-Street.png",
+    "priority": "normal",
+    "isBoosted": false,
+    "status": "pending",
+    "submittedBy": "user_105",
+    "assignedStaff": null,
+    "upvotes": 19,
+    "organizer_name": "Farhan Chowdhury",
+    "organizer_email": "farhan.chowdhury05@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported broken footpath tiles; requests urgent repair for safety.",
+        "updatedBy": { "name": "Citizen A5", "role": "citizen" },
+        "timestamp": "2025-12-01T13:15:00Z"
+      }
+    ],
+    "createdAt": "2025-12-01T13:15:00Z"
+  },
+  {
+    "title": "Water Leakage on Birch Avenue Affecting Sidewalks",
+    "description": "A leaking main water pipe on Birch Avenue is causing continuous water accumulation on the sidewalks, damaging pavement and nearby gardens. Pedestrians are forced to walk on the road, increasing accident risk. Immediate inspection and pipe repair or replacement are essential.",
+    "category": "Water Leakage",
+    "location": "Birch Avenue, House #50-60",
+    "images": "https://i.ibb.co.com/fVhTJqSQ/Water-Leakage-on-Birch-Avenue-Affecting-Sidewalks.png",
+    "priority": "high",
+    "isBoosted": false,
+    "status": "pending",
+    "submittedBy": "user_106",
+    "assignedStaff": null,
+    "upvotes": 27,
+    "organizer_name": "Nadim Akbar",
+    "organizer_email": "nadim.akbar06@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported water leakage causing road damage; urgent repair needed.",
+        "updatedBy": { "name": "Citizen A6", "role": "citizen" },
+        "timestamp": "2025-12-01T14:00:00Z"
+      }
+    ],
+    "createdAt": "2025-12-01T14:00:00Z"
+  },
+  {
+    "title": "Damaged Traffic Signboard at Cedar & Pine Intersection",
+    "description": "The traffic signboard at the intersection of Cedar and Pine streets is damaged and unreadable, causing confusion for drivers and minor traffic accidents. Temporary signage or replacement is urgently needed to prevent further incidents.",
+    "category": "Traffic Sign",
+    "location": "Cedar & Pine Intersection",
+    "images": "https://i.ibb.co.com/vCTg5mBR/Damaged-Traffic-Signboard-at-Cedar-Pine-Intersection.png",
+    "priority": "high",
+    "isBoosted": false,
+    "status": "resolved",
+    "submittedBy": "user_107",
+    "assignedStaff": "Staff B",
+    "upvotes": 21,
+    "organizer_name": "Hasib Mahmud",
+    "organizer_email": "hasib.mahmud07@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported damaged traffic signboard; replacement requested.",
+        "updatedBy": { "name": "Hasib Mahmud", "role": "citizen" },
+        "timestamp": "2025-12-01T14:45:00Z"
+      },
+      {
+        "status": "in-progress",
+        "message": "Staff started replacement work for the traffic signboard.",
+        "updatedBy": { "name": "Staff B", "role": "staff" },
+        "timestamp": "2025-12-03T10:00:00Z"
+      },
+      {
+        "status": "resolved",
+        "message": "Traffic signboard repaired and replaced by staff.",
+        "updatedBy": { "name": "Staff B", "role": "staff" },
+        "timestamp": "2025-12-06T13:00:00Z"
+      }
+    ],
+    "createdAt": "2025-12-01T14:45:00Z"
+  },
+  {
+    "title": "Collapsed Wooden Footbridge Over Community Stream",
+    "description": "The small wooden footbridge over the community stream has collapsed, making it unsafe for children and residents to cross. Local schoolchildren are forced to take a longer and dangerous route. Urgent repair or replacement is necessary for public safety.",
+    "category": "Bridge",
+    "location": "Community Stream Footbridge, Sector 9",
+    "images": "https://i.ibb.co.com/21b6nfxN/Collapsed-Wooden-Footbridge-Over-Community-Stream.png",
+    "priority": "high",
+    "isBoosted": true,
+    "status": "resolved",
+    "submittedBy": "user_108",
+    "assignedStaff": "Staff C",
+    "upvotes": 30,
+    "organizer_name": "Omar Siddique",
+    "organizer_email": "omar.siddique08@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported collapsed footbridge; urgent repair requested for safe passage.",
+        "updatedBy": { "name": "Omar Siddique", "role": "citizen" },
+        "timestamp": "2025-12-01T15:30:00Z"
+      },
+      {
+        "status": "in-progress",
+        "message": "Staff started repairing the footbridge.",
+        "updatedBy": { "name": "Staff C", "role": "staff" },
+        "timestamp": "2025-12-03T11:00:00Z"
+      },
+      {
+        "status": "resolved",
+        "message": "Footbridge repaired and reopened for public use.",
+        "updatedBy": { "name": "Staff C", "role": "staff" },
+        "timestamp": "2025-12-07T15:00:00Z"
+      }
+    ],
+    "createdAt": "2025-12-01T15:30:00Z"
+  },
+  {
+    "title": "Vandalized Benches in Pinewood Community Park",
+    "description": "Several benches in Pinewood Community Park have been vandalized, with broken planks and graffiti. Visitors, especially elderly people, are unable to use the seating areas safely. Repair or replacement of benches is needed to restore park safety and aesthetics.",
+    "category": "Public Park",
+    "location": "Pinewood Community Park, Sector 3",
+    "images": "https://i.ibb.co.com/V0qJZc71/Vandalized-Benches-in-Pinewood-Community-Park.png",
+    "priority": "normal",
+    "isBoosted": true,
+    "status": "pending",
+    "submittedBy": "user_109",
+    "assignedStaff": null,
+    "upvotes": 17,
+    "organizer_name": "Zahid Hasan",
+    "organizer_email": "zahid.hasan09@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported vandalized benches; requests repair or replacement.",
+        "updatedBy": { "name": "Citizen A9", "role": "citizen" },
+        "timestamp": "2025-12-01T16:00:00Z"
+      }
+    ],
+    "createdAt": "2025-12-01T16:00:00Z"
+  },
+  {
+    "title": "Fallen Tree Blocking Elm Avenue Near Shopping Mall",
+    "description": "A large tree has fallen across Elm Avenue due to recent storms, completely blocking traffic. Nearby power lines are entangled in the branches, posing an electrocution risk. Emergency removal and road clearance are urgently required to restore traffic and public safety.",
+    "category": "Natural",
+    "location": "Elm Avenue, Near City Shopping Mall",
+    "images": "https://i.ibb.co.com/mrc29kHH/Fallen-Tree-Blocking-Elm-Avenue-Near-Shopping-Mall.png",
+    "priority": "high",
+    "isBoosted": false,
+    "status": "resolved",
+    "submittedBy": "user_110",
+    "assignedStaff": "Staff D",
+    "upvotes": 40,
+    "organizer_name": "Imran Kabir",
+    "organizer_email": "imran.kabir10@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported fallen tree blocking road; urgent removal needed.",
+        "updatedBy": { "name": "Imran Kabir", "role": "citizen" },
+        "timestamp": "2025-12-01T16:30:00Z"
+      },
+      {
+        "status": "in-progress",
+        "message": "Staff started removing the fallen tree.",
+        "updatedBy": { "name": "Staff D", "role": "staff" },
+        "timestamp": "2025-12-02T09:00:00Z"
+      },
+      {
+        "status": "resolved",
+        "message": "Tree cleared and road reopened.",
+        "updatedBy": { "name": "Staff D", "role": "staff" },
+        "timestamp": "2025-12-04T12:00:00Z"
+      }
+    ],
+    "createdAt": "2025-12-01T16:30:00Z"
+  },
+   {
+    "title": "Streetlight Not Functioning on Magnolia Street Near School",
+    "description": "The streetlight on Magnolia Street near the community school has been out for several nights. Parents report difficulty seeing their children walking home, and drivers risk accidents due to poor visibility. The wiring appears damaged, and water has seeped into the lamp housing. Immediate repair is required to ensure pedestrian safety.",
+    "category": "Electricity",
+    "location": "Magnolia Street, Near Community School",
+    "images": "https://i.ibb.co.com/ccrGGQtN/Streetlight-Not-Functioning-on-Magnolia-Street-Near-School.png",
+    "priority": "high",
+    "isBoosted": true,
+    "status": "resolved",
+    "submittedBy": "user_111",
+    "assignedStaff": "Staff E",
+    "upvotes": 33,
+    "organizer_name": "Mahin Rahat",
+    "organizer_email": "mahin.rahat11@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported non-functional streetlight; urgent repair requested.",
+        "updatedBy": { "name": "Mahin Rahat", "role": "citizen" },
+        "timestamp": "2025-12-02T08:15:00Z"
+      },
+      {
+        "status": "in-progress",
+        "message": "Staff started repairing the streetlight.",
+        "updatedBy": { "name": "Staff E", "role": "staff" },
+        "timestamp": "2025-12-03T10:30:00Z"
+      },
+      {
+        "status": "resolved",
+        "message": "Streetlight repaired and functioning properly.",
+        "updatedBy": { "name": "Staff E", "role": "staff" },
+        "timestamp": "2025-12-05T16:00:00Z"
+      }
+    ],
+    "createdAt": "2025-12-02T08:15:00Z"
+  },
+  {
+    "title": "Enormous Pothole on Cherry Boulevard Causing Traffic Hazards",
+    "description": "Cherry Boulevard has developed a massive pothole near the central market. Vehicles frequently hit the pothole, resulting in tire and suspension damage. Heavy rains fill the pothole with water, making it almost invisible. Immediate repair and proper road resurfacing are necessary to prevent accidents.",
+    "category": "Pothole",
+    "location": "Cherry Boulevard, Near Central Market",
+    "images": "https://i.ibb.co.com/Y41SXXD8/Enormous-Pothole-on-Cherry-Boulevard-Causing-Traffic-Hazards.png",
+    "priority": "high",
+    "isBoosted": false,
+    "status": "resolved",
+    "submittedBy": "user_112",
+    "assignedStaff": "Staff F",
+    "upvotes": 29,
+    "organizer_name": "Sohail Naser",
+    "organizer_email": "sohail.naser12@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported large pothole causing vehicle damage; urgent repair required.",
+        "updatedBy": { "name": "Sohail Naser", "role": "citizen" },
+        "timestamp": "2025-12-02T09:00:00Z"
+      },
+      {
+        "status": "in-progress",
+        "message": "Staff started repairing the pothole.",
+        "updatedBy": { "name": "Staff F", "role": "staff" },
+        "timestamp": "2025-12-03T11:00:00Z"
+      },
+      {
+        "status": "resolved",
+        "message": "Pothole repaired and road resurfaced.",
+        "updatedBy": { "name": "Staff F", "role": "staff" },
+        "timestamp": "2025-12-05T15:00:00Z"
+      }
+    ],
+    "createdAt": "2025-12-02T09:00:00Z"
+  },
+  {
+    "title": "Overflowing Drainage on Walnut Street Affecting Local Shops",
+    "description": "Sewage from the drainage system on Walnut Street is overflowing onto the sidewalks and road. The foul odor is affecting nearby shops and eateries, and residents are concerned about health hazards. Immediate cleaning and inspection of the drainage system are crucial to prevent further contamination.",
+    "category": "Drainage",
+    "location": "Walnut Street, Near Shopping Area",
+    "images": "https://i.ibb.co.com/tw6KtYVC/Overflowing-Drainage-on-Walnut-Street-Affecting-Local-Shops.png",
+    "priority": "high",
+    "isBoosted": false,
+    "status": "pending",
+    "submittedBy": "user_113",
+    "assignedStaff": null,
+    "upvotes": 31,
+    "organizer_name": "Tanim Sharif",
+    "organizer_email": "tanim.sharif13@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported sewage overflow causing health risk; urgent action needed.",
+        "updatedBy": { "name": "Citizen B3", "role": "citizen" },
+        "timestamp": "2025-12-02T09:45:00Z"
+      }
+    ],
+    "createdAt": "2025-12-02T09:45:00Z"
+  },
+  {
+    "title": "Overflowing Garbage at Elmwood Street Bus Stop",
+    "description": "The garbage bin at the Elmwood Street bus stop has been overflowing for days, creating an unhygienic environment. Waste has spilled onto the pavement, attracting flies and stray animals. Citizens request immediate waste collection and increased monitoring to prevent recurrence.",
+    "category": "Waste",
+    "location": "Elmwood Street Bus Stop, Sector 8",
+    "images": "https://i.ibb.co.com/MkZCGttn/Overflowing-Garbage-at-Elmwood-Street-Bus-Stop.png",
+    "priority": "normal",
+    "isBoosted": false,
+    "status": "pending",
+    "submittedBy": "user_114",
+    "assignedStaff": null,
+    "upvotes": 23,
+    "organizer_name": "Rubel Karim",
+    "organizer_email": "rubel.karim14@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported overflowing garbage; requests collection enforcement.",
+        "updatedBy": { "name": "Citizen B4", "role": "citizen" },
+        "timestamp": "2025-12-02T10:15:00Z"
+      }
+    ],
+    "createdAt": "2025-12-02T10:15:00Z"
+  },
+  {
+    "title": "Broken Footpath on Aspen Road Creating Trip Hazards",
+    "description": "Several sections of the footpath on Aspen Road have cracked and broken tiles. Pedestrians, particularly schoolchildren and the elderly, are at risk of tripping. The footpath is poorly lit at night, increasing the danger. Renovation and proper lighting are recommended.",
+    "category": "Footpath",
+    "location": "Aspen Road, Near Greenfield School",
+    "images": "https://i.ibb.co.com/00VCKN1/Broken-Footpath-on-Aspen-Road-Creating-Trip-Hazards.png",
+    "priority": "normal",
+    "isBoosted": true,
+    "status": "in-progress",
+    "submittedBy": "user_115",
+    "assignedStaff": null,
+    "upvotes": 20,
+    "organizer_name": "Fahim Bashar",
+    "organizer_email": "fahim.bashar15@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported broken footpath; repair requested for safety.",
+        "updatedBy": { "name": "Citizen B5", "role": "citizen" },
+        "timestamp": "2025-12-02T10:45:00Z"
+      },
+      {
+        "status": "in-progress",
+        "message": "Staff started working on the issue.",
+        "updatedBy": { "name": "Staff Name", "role": "staff" },
+        "timestamp": "2025-12-08T14:45:00Z"
+      }
+    ],
+    "createdAt": "2025-12-02T10:45:00Z"
+  },
+  {
+    "title": "Persistent Water Leakage on Fir Avenue Damaging Homes",
+    "description": "A main water pipeline on Fir Avenue has been leaking continuously for several days, causing water accumulation on the road and sidewalks. Nearby house entrances are flooded, and pavement is eroding. Immediate inspection and pipe replacement are required to prevent property damage.",
+    "category": "Water Leakage",
+    "location": "Fir Avenue, Houses #20-30",
+    "images": "https://i.ibb.co.com/1tbj1jST/Persistent-Water-Leakage-on-Fir-Avenue-Damaging-Homes.png",
+    "priority": "high",
+    "isBoosted": false,
+    "status": "pending",
+    "submittedBy": "user_116",
+    "assignedStaff": null,
+    "upvotes": 28,
+    "organizer_name": "Mizan Talukdar",
+    "organizer_email": "mizan.talukdar16@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported persistent water leakage; urgent repair requested.",
+        "updatedBy": { "name": "Citizen B6", "role": "citizen" },
+        "timestamp": "2025-12-02T11:30:00Z"
+      }
+    ],
+    "createdAt": "2025-12-02T11:30:00Z"
+  },
+  {
+    "title": "Damaged Traffic Sign at Maple & Cherry Crossroads",
+    "description": "The traffic sign at the intersection of Maple and Cherry streets is broken and unreadable. Drivers are taking wrong turns, leading to minor collisions and congestion. Replacement or temporary signage is urgently needed to prevent accidents and restore traffic flow.",
+    "category": "Traffic Sign",
+    "location": "Maple & Cherry Crossroads",
+    "images": "https://i.ibb.co.com/gb1YtpYs/Damaged-Traffic-Sign-at-Maple-Cherry-Crossroads.png",
+    "priority": "high",
+    "isBoosted": false,
+    "status": "pending",
+    "submittedBy": "user_117",
+    "assignedStaff": null,
+    "upvotes": 24,
+    "organizer_name": "Asif Reza",
+    "organizer_email": "asif.reza17@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported damaged traffic sign; replacement requested.",
+        "updatedBy": { "name": "Citizen B7", "role": "citizen" },
+        "timestamp": "2025-12-02T12:00:00Z"
+      }
+    ],
+    "createdAt": "2025-12-02T12:00:00Z"
+  },
+  {
+    "title": "Collapsed Wooden Bridge Over Creek in Riverside Community",
+    "description": "The wooden bridge over the creek in Riverside Community has partially collapsed, leaving a dangerous gap. Local children use this bridge to go to school, and residents are forced to take a longer, unsafe route. Immediate structural repair or replacement is needed for public safety.",
+    "category": "Bridge",
+    "location": "Riverside Community, Sector 5",
+    "images": "https://i.ibb.co.com/HLrzQFG5/Collapsed-Wooden-Bridge-Over-Creek-in-Riverside-Community.png",
+    "priority": "high",
+    "isBoosted": false,
+    "status": "pending",
+    "submittedBy": "user_118",
+    "assignedStaff": null,
+    "upvotes": 30,
+    "organizer_name": "Shakil Munna",
+    "organizer_email": "shakil.munna18@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported collapsed bridge; urgent repair required.",
+        "updatedBy": { "name": "Citizen B8", "role": "citizen" },
+        "timestamp": "2025-12-02T12:45:00Z"
+      }
+    ],
+    "createdAt": "2025-12-02T12:45:00Z"
+  },
+  {
+    "title": "Vandalized Benches and Trash in Willow Park",
+    "description": "Several benches in Willow Park have been vandalized with broken planks and graffiti. Trash has accumulated around seating areas, making it unsafe and unpleasant for visitors. Citizens request repair, replacement, and better maintenance to restore park safety and aesthetics.",
+    "category": "Public Park",
+    "location": "Willow Park, Sector 4",
+    "images": "https://i.ibb.co.com/kg3DckRz/Vandalized-Benches-and-Trash-in-Willow-Park.png",
+    "priority": "normal",
+    "isBoosted": false,
+    "status": "pending",
+    "submittedBy": "user_119",
+    "assignedStaff": null,
+    "upvotes": 18,
+    "organizer_name": "Rashidul Bari",
+    "organizer_email": "rashidul.bari19@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported vandalized benches and trash; maintenance requested.",
+        "updatedBy": { "name": "Citizen B9", "role": "citizen" },
+        "timestamp": "2025-12-02T13:30:00Z"
+      }
+    ],
+    "createdAt": "2025-12-02T13:30:00Z"
+  },
+  {
+    "title": "Fallen Tree Blocking Oak Avenue Near Shopping Center",
+    "description": "A large tree has fallen across Oak Avenue due to recent storms, completely blocking traffic. Nearby power lines are entangled in the branches, creating a high-risk situation for pedestrians and motorists. Immediate removal and clearance are needed to restore safe traffic flow.",
+    "category": "Obstruction",
+    "location": "Oak Avenue, Near Shopping Center",
+    "images": "https://i.ibb.co.com/whYkqD5w/Fallen-Tree-Blocking-Oak-Avenue-Near-Shopping-Center.png",
+    "priority": "high",
+    "isBoosted": false,
+    "status": "pending",
+    "submittedBy": "user_120",
+    "assignedStaff": null,
+    "upvotes": 37,
+    "organizer_name": "Ehsan Jamil",
+    "organizer_email": "ehsan.jamil20@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported fallen tree blocking road; urgent removal needed.",
+        "updatedBy": { "name": "Citizen B10", "role": "citizen" },
+        "timestamp": "2025-12-02T14:15:00Z"
+      }
+    ],
+    "createdAt": "2025-12-02T14:15:00Z"
+  },
+  {
+    "title": "Streetlight Failing on Pine Street Near Library",
+    "description": "The streetlight on Pine Street near the city library flickers intermittently and has been non-functional at night for the past week. Pedestrians and library visitors are struggling to see the walkway, increasing the risk of slips and minor accidents. Immediate inspection and electrical repair are required.",
+    "category": "Electricity",
+    "location": "Pine Street, Near City Library",
+    "images": "https://i.ibb.co.com/gZMhXGsj/Streetlight-Failing-on-Pine-Street-Near-Library.png",
+    "priority": "high",
+    "isBoosted": false,
+    "status": "pending",
+    "submittedBy": "user_121",
+    "assignedStaff": null,
+    "upvotes": 34,
+    "organizer_name": "Tareq Adnan",
+    "organizer_email": "tareq.adnan21@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported flickering streetlight; urgent repair needed.",
+        "updatedBy": { "name": "Citizen C1", "role": "citizen" },
+        "timestamp": "2025-12-03T08:00:00Z"
+      }
+    ],
+    "createdAt": "2025-12-03T08:00:00Z"
+  },
+  {
+    "title": "Deep Pothole on Elm Street Near Fire Station",
+    "description": "A large, deep pothole has formed on Elm Street close to the fire station. Vehicles, including emergency response vehicles, face serious damage when crossing the pothole. Heavy rainfall has worsened the situation, filling the pothole and making it invisible at night. Immediate repair is needed to prevent accidents.",
+    "category": "Pothole",
+    "location": "Elm Street, Near Fire Station",
+    "images": "https://i.ibb.co.com/7dXFYKKd/Deep-Pothole-on-Elm-Street-Near-Fire-Station.png",
+    "priority": "high",
+    "isBoosted": false,
+    "status": "pending",
+    "submittedBy": "user_122",
+    "assignedStaff": null,
+    "upvotes": 31,
+    "organizer_name": "Jahidul Amin",
+    "organizer_email": "jahidul.amin22@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported deep pothole causing vehicle damage; urgent action needed.",
+        "updatedBy": { "name": "Citizen C2", "role": "citizen" },
+        "timestamp": "2025-12-03T08:30:00Z"
+      }
+    ],
+    "createdAt": "2025-12-03T08:30:00Z"
+  },
+  {
+    "title": "Sewage Overflow on Spruce Avenue Affecting Shops",
+    "description": "Sewage overflow on Spruce Avenue is causing severe disruption to nearby shops and residents. The foul odor is unbearable, and the risk of disease is high. Immediate cleaning, drainage inspection, and possible pipe replacement are necessary to restore safety and hygiene.",
+    "category": "Drainage",
+    "location": "Spruce Avenue, Sector 7",
+    "images": "https://i.ibb.co.com/Dfy95G0y/Sewage-Overflow-on-Spruce-Avenue-Affecting-Shops.png",
+    "priority": "high",
+    "isBoosted": false,
+    "status": "pending",
+    "submittedBy": "user_123",
+    "assignedStaff": null,
+    "upvotes": 29,
+    "organizer_name": "Shamim Rumi",
+    "organizer_email": "shamim.rumi23@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported sewage overflow affecting shops; urgent action required.",
+        "updatedBy": { "name": "Citizen C3", "role": "citizen" },
+        "timestamp": "2025-12-03T09:00:00Z"
+      }
+    ],
+    "createdAt": "2025-12-03T09:00:00Z"
+  },
+  {
+    "title": "Overflowing Garbage at Main Street Bus Stop",
+    "description": "The garbage bin at the main street bus stop has overflowed, spreading waste along the pavement. Commuters are facing inconvenience, and hygiene is severely compromised. Daily waste collection and additional bins are recommended to prevent recurrence.",
+    "category": "Garbage",
+    "location": "Main Street Bus Stop, Sector 10",
+    "images": "https://i.ibb.co.com/0y4fbCFt/Overflowing-Garbage-at-Main-Street-Bus-Stop.png",
+    "priority": "normal",
+    "isBoosted": false,
+    "status": "pending",
+    "submittedBy": "user_124",
+    "assignedStaff": null,
+    "upvotes": 25,
+    "organizer_name": "Nabil Hasan",
+    "organizer_email": "nabil.hasan24@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported overflowing garbage; requests immediate collection.",
+        "updatedBy": { "name": "Citizen C4", "role": "citizen" },
+        "timestamp": "2025-12-03T09:30:00Z"
+      }
+    ],
+    "createdAt": "2025-12-03T09:30:00Z"
+  },
+  {
+    "title": "Cracked Footpath on Cedar Road Near Clinic",
+    "description": "The footpath on Cedar Road near the local clinic has cracked tiles, creating trip hazards for pedestrians. Elderly residents and patients visiting the clinic are especially at risk. Immediate footpath repair and proper lighting are recommended to ensure pedestrian safety.",
+    "category": "Footpath",
+    "location": "Cedar Road, Near Health Clinic",
+    "images": "https://i.ibb.co.com/M5Qp0sHW/Cracked-Footpath-on-Cedar-Road-Near-Clinic.png",
+    "priority": "normal",
+    "isBoosted": false,
+    "status": "pending",
+    "submittedBy": "user_125",
+    "assignedStaff": null,
+    "upvotes": 22,
+    "organizer_name": "Rased Khan",
+    "organizer_email": "rased.khan25@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported cracked footpath; repair requested for safety.",
+        "updatedBy": { "name": "Citizen C5", "role": "citizen" },
+        "timestamp": "2025-12-03T10:00:00Z"
+      }
+    ],
+    "createdAt": "2025-12-03T10:00:00Z"
+  },
+  {
+    "title": "Water Leakage on Fir Street Flooding Sidewalks",
+    "description": "A main water pipe on Fir Street has a severe leak, causing sidewalks and entrances to nearby homes to flood. Pedestrians are forced to walk on the road, and pavement is eroding rapidly. Immediate inspection and repair are essential to prevent property damage and accidents.",
+    "category": "Water Leakage",
+    "location": "Fir Street, Houses #40-50",
+    "images": "https://i.ibb.co.com/4gPg4ZJs/Water-Leakage-on-Fir-Street-Flooding-Sidewalks.png",
+    "priority": "high",
+    "isBoosted": false,
+    "status": "pending",
+    "submittedBy": "user_126",
+    "assignedStaff": null,
+    "upvotes": 30,
+    "organizer_name": "Tanvir Alam",
+    "organizer_email": "tanvir.alam26@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported water leakage causing flooding; urgent repair requested.",
+        "updatedBy": { "name": "Citizen C6", "role": "citizen" },
+        "timestamp": "2025-12-03T10:30:00Z"
+      }
+    ],
+    "createdAt": "2025-12-03T10:30:00Z"
+  },
+  {
+    "title": "Broken Traffic Sign at Elm & Oak Junction",
+    "description": "The traffic sign at the Elm and Oak junction is broken and unreadable, causing drivers to make wrong turns and minor accidents. Replacement or temporary signage is urgently needed to prevent further confusion and accidents.",
+    "category": "Traffic Sign",
+    "location": "Elm & Oak Junction",
+    "images": "https://i.ibb.co.com/xtCBc1y6/Broken-Traffic-Sign-at-Elm-Oak-Junction-2.png",
+    "priority": "high",
+    "isBoosted": false,
+    "status": "pending",
+    "submittedBy": "user_127",
+    "assignedStaff": null,
+    "upvotes": 26,
+    "organizer_name": "Rakibul Hasan",
+    "organizer_email": "rakibul.hasan27@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported broken traffic sign; replacement requested urgently.",
+        "updatedBy": { "name": "Citizen C7", "role": "citizen" },
+        "timestamp": "2025-12-03T11:00:00Z"
+      }
+    ],
+    "createdAt": "2025-12-03T11:00:00Z"
+  },
+  {
+    "title": "Collapsed Footbridge Over Brook in Maple Community",
+    "description": "A small footbridge over the brook in Maple Community has partially collapsed, creating a dangerous gap. Local children use this path to reach school, and residents must take longer, unsafe routes. Immediate repair or replacement is needed for safety.",
+    "category": "Bridge",
+    "location": "Maple Community Brook, Sector 6",
+    "images": "https://i.ibb.co.com/YFFJCQwt/Collapsed-Footbridge-Over-Brook-in-Maple-Community02.png",
+    "priority": "high",
+    "isBoosted": false,
+    "status": "pending",
+    "submittedBy": "user_128",
+    "assignedStaff": null,
+    "upvotes": 32,
+    "organizer_name": "Sadiq Khan",
+    "organizer_email": "sadiq.khan28@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported collapsed footbridge; urgent repair requested.",
+        "updatedBy": { "name": "Citizen C8", "role": "citizen" },
+        "timestamp": "2025-12-03T11:30:00Z"
+      }
+    ],
+    "createdAt": "2025-12-03T11:30:00Z"
+  },
+  {
+    "title": "Vandalized Benches in Cedar Park",
+    "description": "Several benches in Cedar Park have been vandalized with broken wood and graffiti. The damage creates an unsafe and unpleasant environment for park visitors. Repair, replacement, and increased monitoring are recommended to restore safety and aesthetics.",
+    "category": "Public Park",
+    "location": "Cedar Park, Sector 5",
+    "images": "https://i.ibb.co.com/tTyfW8y7/Vandalized-Benches-in-Cedar-Park.png",
+    "priority": "normal",
+    "isBoosted": false,
+    "status": "pending",
+    "submittedBy": "user_129",
+    "assignedStaff": null,
+    "upvotes": 19,
+    "organizer_name": "Jubayer Hossain",
+    "organizer_email": "jubayer.hossain29@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported vandalized benches; repair requested.",
+        "updatedBy": { "name": "Citizen C9", "role": "citizen" },
+        "timestamp": "2025-12-03T12:00:00Z"
+      }
+    ],
+    "createdAt": "2025-12-03T12:00:00Z"
+  },
+  {
+    "title": "Fallen Tree Blocking Birch Avenue",
+    "description": "A storm caused a large tree to fall across Birch Avenue, blocking traffic completely. Power lines are entangled in the branches, creating a dangerous situation. Immediate removal and clearance are required to restore safe traffic flow and prevent accidents.",
+    "category": "Natural",
+    "location": "Birch Avenue, Sector 8",
+    "images": "https://i.ibb.co.com/FbfvZd3c/Fallen-Tree-Blocking-Birch-Avenue.png",
+    "priority": "high",
+    "isBoosted": false,
+    "status": "pending",
+    "submittedBy": "user_130",
+    "assignedStaff": null,
+    "upvotes": 38,
+    "organizer_name": "Faruq Malek",
+    "organizer_email": "faruq.malek30@example.com",
+    "organizer_photo": "https://i.ibb.co.com/xKHd4MxK/profile1.png",
+    "timeline": [
+      {
+        "status": "pending",
+        "message": "Citizen reported fallen tree blocking road; urgent removal requested.",
+        "updatedBy": { "name": "Citizen C10", "role": "citizen" },
+        "timestamp": "2025-12-03T12:30:00Z"
+      }
+    ],
+    "createdAt": "2025-12-03T12:30:00Z"
+  }
+]
