@@ -58,12 +58,26 @@ async function run() {
         const usersCollection = db.collection('users');
 
 
-        // api
+        // POST: API
         app.post('/issues', async (req, res) => {
             const issue = req.body;
+            const { submittedBy } = issue;
+            const user = await usersCollection.findOne({ email: submittedBy });
+            if (!user) {
+                return res.status(404).send({ message: "User not found" });
+            }
+            if (!user.isPremium) {
+                const userIssuesCount = await issuesCollection.countDocuments({ submittedBy });
+                if (userIssuesCount >= 3) {
+                    return res.status(403).send({
+                        message: "Free users can submit only 3 issues. Please subscribe for unlimited reporting."
+                    });
+                }
+            }
             const result = await issuesCollection.insertOne(issue);
             res.send(result);
         });
+
         
 
         // issue get api
@@ -71,10 +85,7 @@ async function run() {
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 9;
         const skip = (page - 1) * limit;
-        const search = req.query.search || '';
-        const status = req.query.status;
-        const priority = req.query.priority;
-        const category = req.query.category;
+        const { search = '', status, priority, category, submittedBy } = req.query;
         const query = {};
         if (search) {
             query.$or = [
@@ -83,15 +94,10 @@ async function run() {
                 { location: { $regex: search, $options: 'i' } }
             ];
         }
-        if (status) {
-            query.status = status;
-        }
-        if (priority) {
-            query.isBoosted = priority.toLowerCase() === 'high' ? true : false;
-        }
-        if (category) {
-            query.category = { $regex: category, $options: 'i' };
-        }
+        if (status) query.status = status;
+        if (priority) query.isBoosted = priority.toLowerCase() === 'high';
+        if (category) query.category = { $regex: category, $options: 'i' };
+        if (submittedBy) query.submittedBy = submittedBy;
         const total = await issuesCollection.countDocuments(query);
         const totalPages = Math.ceil(total / limit);
         const issues = await issuesCollection
@@ -154,10 +160,6 @@ async function run() {
         });
 
 
-
-
-
-
         // POST: Save User
         app.post("/users", async (req, res) => {
             const user = req.body;
@@ -169,7 +171,6 @@ async function run() {
             res.send(result);
         });
 
-
         // GET: Save User
         app.get('/users', verifyFBToken, async (req, res) => {
             const email = req.decoded_email;
@@ -179,7 +180,6 @@ async function run() {
             }
             res.send(user);
         });
-
 
         // PUT: Update User
         app.put('/users/:email', async (req, res) => {
@@ -191,6 +191,66 @@ async function run() {
             );
             res.send(result);
         });
+
+        // My issue
+        app.get('/my-issues', verifyFBToken, async (req, res) => {
+            const email = req.decoded_email;
+            const { status, category } = req.query;
+            const query = { submittedBy: email };
+            if (status) query.status = status;
+            if (category) query.category = category;
+            const issues = await issuesCollection
+                .find(query)
+                .sort({ createdAt: -1 })
+                .toArray();
+            res.send(issues);
+        });
+
+        // PATCH: Update Issue
+        app.patch('/issues/:id', verifyFBToken, async (req, res) => {
+            const id = req.params.id;
+            const email = req.decoded_email;
+            const updateData = req.body;
+            const issue = await issuesCollection.findOne({ _id: new ObjectId(id) });
+            if (!issue) {
+                return res.status(404).send({ message: 'Issue not found' });
+            }
+            if (issue.submittedBy !== email) {
+                return res.status(403).send({ message: 'Forbidden access' });
+            }
+            if (updateData.images && typeof updateData.images === 'string') {
+                updateData.images = [updateData.images];
+            }
+            const result = await issuesCollection.updateOne(
+                { _id: new ObjectId(id) },
+                {
+                    $set: {
+                        ...updateData,
+                        updatedAt: new Date()
+                    }
+                }
+            );
+            res.send(result);
+        });
+
+        // DELETE: Delete Issue
+        app.delete('/issues/:id', verifyFBToken, async (req, res) => {
+            const id = req.params.id;
+            const email = req.decoded_email;
+            const issue = await issuesCollection.findOne({ _id: new ObjectId(id) });
+            if (!issue) {
+                return res.status(404).send({ message: 'Issue not found' });
+            }
+            if (issue.submittedBy !== email) {
+                return res.status(403).send({ message: 'Forbidden access' });
+            }
+            const result = await issuesCollection.deleteOne({ _id: new ObjectId(id) });
+            res.send(result);
+        });
+
+
+
+
 
 
 
