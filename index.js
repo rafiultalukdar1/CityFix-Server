@@ -57,6 +57,16 @@ async function run() {
         const issuesCollection = db.collection('issues');
         const usersCollection = db.collection('users');
 
+        // Admin Verify
+        const verifyAdmin = async (req, res, next) => {
+        const email = req.decoded_email;
+        const user = await usersCollection.findOne({ email });
+        if (!user || user.role !== 'admin') {
+            return res.status(403).send({ message: 'Admin only access' });
+        }
+            next();
+        };
+
 
         // POST: API
         app.post('/issues', async (req, res) => {
@@ -82,38 +92,32 @@ async function run() {
 
         // issue get api
         app.get('/issues', async (req, res) => {
-        const page = parseInt(req.query.page) || 1;
-        const limit = parseInt(req.query.limit) || 9;
-        const skip = (page - 1) * limit;
-        const { search = '', status, priority, category, submittedBy } = req.query;
-        const query = {};
-        if (search) {
-            query.$or = [
-                { title: { $regex: search, $options: 'i' } },
-                { category: { $regex: search, $options: 'i' } },
-                { location: { $regex: search, $options: 'i' } }
-            ];
-        }
-        if (status) query.status = status;
-        if (priority) query.isBoosted = priority.toLowerCase() === 'high';
-        if (category) query.category = { $regex: category, $options: 'i' };
-        if (submittedBy) query.submittedBy = submittedBy;
-        const total = await issuesCollection.countDocuments(query);
-        const totalPages = Math.ceil(total / limit);
-        const issues = await issuesCollection
-            .find(query)
-            .sort({ isBoosted: -1, priority: -1, upvotes: -1, createdAt: -1 })
-            .skip(skip)
-            .limit(limit)
-            .toArray();
-        res.send({ issues, totalPages });
-    });
-
-
-
-
-
-
+            const page = parseInt(req.query.page) || 1;
+            const limit = parseInt(req.query.limit) || 9;
+            const skip = (page - 1) * limit;
+            const { search = '', status, priority, category, submittedBy } = req.query;
+            const query = {};
+            if (search) {
+                query.$or = [
+                    { title: { $regex: search, $options: 'i' } },
+                    { category: { $regex: search, $options: 'i' } },
+                    { location: { $regex: search, $options: 'i' } }
+                ];
+            }
+            if (status) query.status = status;
+            if (priority) query.isBoosted = priority.toLowerCase() === 'high';
+            if (category) query.category = { $regex: category, $options: 'i' };
+            if (submittedBy) query.submittedBy = submittedBy;
+            const total = await issuesCollection.countDocuments(query);
+            const totalPages = Math.ceil(total / limit);
+            const issues = await issuesCollection
+                .find(query)
+                .sort({ isBoosted: -1, priority: -1, upvotes: -1, createdAt: -1 })
+                .skip(skip)
+                .limit(limit)
+                .toArray();
+            res.send({ issues, totalPages, total });
+        });
 
 
         // Recently Resolved Api
@@ -246,6 +250,50 @@ async function run() {
             }
             const result = await issuesCollection.deleteOne({ _id: new ObjectId(id) });
             res.send(result);
+        });
+
+
+
+        // New
+        app.patch('/issues/:id/assign-staff', verifyFBToken, verifyAdmin, async (req, res) => {
+            const issueId = req.params.id
+            const { staffId } = req.body
+            const issue = await issuesCollection.findOne({ _id: new ObjectId(issueId) })
+            if (!issue) return res.status(404).send({ message: 'Issue not found' })
+            if (issue.assignedStaff) {
+                return res.status(400).send({ message: 'Staff already assigned' })
+            }
+            const staff = await usersCollection.findOne({
+                _id: new ObjectId(staffId),
+                role: 'staff'
+            })
+            if (!staff) return res.status(404).send({ message: 'Staff not found' })
+            const assignedStaff = {
+                id: staff._id,
+                name: staff.name,
+                email: staff.email
+            }
+            const result = await issuesCollection.updateOne(
+                { _id: new ObjectId(issueId) },
+                {
+                    $set: { assignedStaff },
+                    $push: {
+                        timeline: {
+                            status: 'pending',
+                            message: `Issue assigned to ${staff.name}`,
+                            updatedBy: { name: 'Admin', role: 'admin' },
+                            timestamp: new Date()
+                        }
+                    }
+                }
+            )
+            res.send(result)
+        })
+
+        // server/routes/users.js
+        app.get('/users/staff', verifyFBToken, verifyAdmin, async (req, res) => {
+            const staffs = await usersCollection.find({ role: 'staff' }).toArray();
+            res.send(staffs);
         });
 
 
