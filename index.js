@@ -318,10 +318,47 @@ async function run() {
             res.send(issues)
         });
 
+        // Assigned Issues
+        app.patch('/issues/:id/status', verifyFBToken, verifyStaff, async (req, res) => {
+            const id = req.params.id
+            const { status } = req.body
+            const email = req.decoded_email
+            const issue = await issuesCollection.findOne({ _id: new ObjectId(id) })
+            if (!issue) return res.status(404).send({ message: 'Issue not found' })
+            if (issue.assignedStaff?.email !== email) {
+                return res.status(403).send({ message: 'Forbidden' })
+            }
+            const allowedStatus = ['in-progress', 'working', 'resolved', 'closed']
+            if (!allowedStatus.includes(status)) {
+                return res.status(400).send({ message: 'Invalid status change' })
+            }
+            const staffName = issue.assignedStaff?.name || 'Staff'
+            const result = await issuesCollection.updateOne(
+                { _id: new ObjectId(id) },
+                {
+                    $set: {
+                        status,
+                        updatedAt: new Date()
+                    },
+                    $push: {
+                        timeline: {
+                            status,
+                            message: `Status changed to ${status}`,
+                            updatedBy: {
+                                name: staffName,
+                                email,
+                                role: 'staff'
+                            },
+                            timestamp: new Date()
+                        }
+                    }
+                }
+            )
+            res.send(result)
+        });
 
 
 
-        
 
 
 
