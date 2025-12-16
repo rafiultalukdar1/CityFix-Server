@@ -57,7 +57,7 @@ async function run() {
         const issuesCollection = db.collection('issues');
         const usersCollection = db.collection('users');
 
-        // Admin Verify
+        // Admin Verify Middle-Ware
         const verifyAdmin = async (req, res, next) => {
         const email = req.decoded_email;
         const user = await usersCollection.findOne({ email });
@@ -66,6 +66,17 @@ async function run() {
         }
             next();
         };
+
+        // Staff Verify Middle-Ware
+        const verifyStaff = async (req, res, next) => {
+            const email = req.decoded_email
+            const user = await usersCollection.findOne({ email })
+            if (!user || user.role !== 'staff') {
+                return res.status(403).send({ message: 'Staff only access' })
+            }
+            next()
+        }
+
 
 
         // POST: API
@@ -295,6 +306,28 @@ async function run() {
             const staffs = await usersCollection.find({ role: 'staff' }).toArray();
             res.send(staffs);
         });
+
+
+        // Assigned Issues
+        app.get('/assigned-issues', verifyFBToken, verifyStaff, async (req, res) => {
+            const email = req.decoded_email
+            const issues = await issuesCollection
+                .find({ 'assignedStaff.email': email })
+                .sort({ createdAt: -1 })
+                .toArray()
+            res.send(issues)
+        });
+
+
+
+
+        
+
+
+
+
+
+
 
 
 
