@@ -357,6 +357,20 @@ async function run() {
             res.send(result)
         });
 
+        // All issue for admin
+        app.get('/admin-all-issues', verifyFBToken, verifyAdmin, async (req, res) => {
+            const issues = await issuesCollection.find({}).toArray()
+            res.send(issues)
+        });
+
+        // GET: All users (admin only)
+        app.get('/admin-all-users', verifyFBToken, verifyAdmin, async (req, res) => {
+            const users = await usersCollection.find({}).toArray();
+            res.send(users);
+        });
+
+
+
 
 
 
