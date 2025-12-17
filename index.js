@@ -75,7 +75,18 @@ async function run() {
                 return res.status(403).send({ message: 'Staff only access' })
             }
             next()
-        }
+        };
+
+        // block
+        const verifyNotBlocked = async (req, res, next) => {
+            const email = req.decoded_email
+            const user = await usersCollection.findOne({ email })
+            if (user?.isBlocked) {
+                return res.status(403).send({ message: 'Your account is blocked' })
+            }
+            next()
+        };
+
 
 
 
@@ -230,7 +241,7 @@ async function run() {
         });
 
         // PATCH: Update Issue
-        app.patch('/issues/:id', verifyFBToken, async (req, res) => {
+        app.patch('/issues/:id', verifyFBToken, verifyNotBlocked, async (req, res) => {
             const id = req.params.id;
             const email = req.decoded_email;
             const updateData = req.body;
@@ -257,7 +268,7 @@ async function run() {
         });
 
         // DELETE: Delete Issue
-        app.delete('/issues/:id', verifyFBToken, async (req, res) => {
+        app.delete('/issues/:id', verifyFBToken, verifyNotBlocked, async (req, res) => {
             const id = req.params.id;
             const email = req.decoded_email;
             const issue = await issuesCollection.findOne({ _id: new ObjectId(id) });
@@ -395,6 +406,16 @@ async function run() {
             res.send({ success: true });
         });
 
+
+        // GET: Logged-in user info
+        app.get('/users/loggedin', verifyFBToken, async (req, res) => {
+            const email = req.decoded_email;
+            const user = await usersCollection.findOne({ email });
+            if (!user) {
+                return res.status(404).send({ message: "User not found" });
+            }
+            res.status(200).json(user);
+        });
 
 
 
