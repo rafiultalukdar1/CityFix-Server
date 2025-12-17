@@ -87,6 +87,14 @@ async function run() {
             if (!user) {
                 return res.status(404).send({ message: "User not found" });
             }
+
+            // block
+            if (user.isBlocked) {
+                return res.status(403).send({
+                message: 'Your account is blocked. You cannot report issues.'
+                });
+            }
+
             if (!user.isPremium) {
                 const userIssuesCount = await issuesCollection.countDocuments({ submittedBy });
                 if (userIssuesCount >= 3) {
@@ -368,6 +376,27 @@ async function run() {
             const users = await usersCollection.find({}).toArray();
             res.send(users);
         });
+
+        // show user in admin dashboard
+        app.get('/admin-citizens', verifyFBToken, verifyAdmin, async (req, res) => {
+            const users = await usersCollection.find({ role: 'citizen' }).toArray();
+            res.send(users);
+        });
+
+        // block user by admin
+        app.patch('/users-block/:id', verifyFBToken, verifyAdmin, async (req, res) => {
+            const id = req.params.id;
+            const user = await usersCollection.findOne({ _id: new ObjectId(id) });
+            if (!user) return res.status(404).send({ message: 'User not found' });
+            await usersCollection.updateOne(
+                { _id: new ObjectId(id) },
+                { $set: { isBlocked: !user.isBlocked } }
+            );
+            res.send({ success: true });
+        });
+
+
+
 
 
 
