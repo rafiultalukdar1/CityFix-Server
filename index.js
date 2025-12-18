@@ -406,39 +406,112 @@ async function run() {
             res.send({ success: true });
         });
 
-
-        // GET: Logged-in user info
-        app.get('/users/loggedin', verifyFBToken, async (req, res) => {
-            const email = req.decoded_email;
-            const user = await usersCollection.findOne({ email });
-            if (!user) {
-                return res.status(404).send({ message: "User not found" });
-            }
-            res.status(200).json(user);
+        // Manage staff
+        app.get('/users-staff', verifyFBToken, verifyAdmin, async (req, res) => {
+            const staffs = await usersCollection
+                .find({ role: 'staff' })
+                .sort({ createdAt: -1 })
+                .toArray();
+            res.send(staffs);
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
+        // Error Start
 
 
         
 
+        // POST: Add new staff with photo upload
+        app.post('/users-staff', verifyFBToken, verifyAdmin, async (req, res) => {
+            const { name, email, phone, password, photo } = req.body;
+            if (!name || !email || !password || !photo) {
+                return res.status(400).send({
+                    message: 'Name, email, password and photo are required'
+                });
+            }
+            try {
+                const firebaseUser = await admin.auth().createUser({
+                    email,
+                    password,
+                    displayName: name,
+                    photoURL: photo
+                });
+                const newStaff = {
+                    _id: new ObjectId(),
+                    firebaseUID: firebaseUser.uid,
+                    name,
+                    email,
+                    phone: phone || '',
+                    photo,
+                    role: 'staff',
+                    createdAt: new Date(),
+                    isBlocked: false
+                };
+                await usersCollection.insertOne(newStaff);
+                res.send({
+                    success: true,
+                    staff: newStaff
+                });
+            } catch (error) {
+                console.error('Create staff error:', error);
+                if (error.code === 'auth/email-already-exists') {
+                    return res.status(400).send({
+                        message: 'Email already exists'
+                    });
+                }
+                res.status(500).send({
+                    message: error.message || 'Failed to create staff'
+                });
+            }
+        });
+
+        // PATCH: Update staff
+        app.patch('/users-staff/:id', verifyFBToken, verifyAdmin, async (req, res) => {
+            const { id } = req.params;
+            const { name, password, phone, photo } = req.body;
+            if (!name) {
+                return res.status(400).send({ message: 'Name is required' });
+            }
+            try {
+                const staff = await usersCollection.findOne({
+                    _id: new ObjectId(id)
+                });
+                if (!staff) {
+                    return res.status(404).send({ message: 'Staff not found' });
+                }
+                const firebaseUpdate = {
+                    displayName: name
+                };
+                if (typeof password === 'string' && password.length >= 6) {
+                    firebaseUpdate.password = password;
+                }
+                if (photo && typeof photo === 'string') {
+                    firebaseUpdate.photoURL = photo;
+                }
+                await admin.auth().updateUser(
+                    staff.firebaseUID,
+                    firebaseUpdate
+                );
+                const mongoUpdate = {
+                    name,
+                    phone: phone || staff.phone,
+                    photo: photo || staff.photo
+                };
+                await usersCollection.updateOne(
+                    { _id: new ObjectId(id) },
+                    { $set: mongoUpdate }
+                );
+                res.send({
+                    success: true,
+                    message: 'Staff updated successfully'
+                });
+            } catch (error) {
+                console.error('Update staff error:', error);
+
+                res.status(500).send({
+                    message: error.message || 'Failed to update staff'
+                });
+            }
+        });
 
 
 
