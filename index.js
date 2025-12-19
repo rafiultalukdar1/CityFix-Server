@@ -1,9 +1,10 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const app = express();
+const stripe = require('stripe')(process.env.STRIPE_SECRET);
 const port = process.env.PORT || 3000;
-require('dotenv').config();
 
 // middle-ware
 app.use(cors());
@@ -32,12 +33,6 @@ const verifyFBToken = async (req, res, next) => {
     }
 };
 
-
-
-
-
-
-
 const uri = `mongodb+srv://${process.env.BD_USER}:${process.env.DB_PASS}@cluster0.w0v9pwr.mongodb.net/?appName=Cluster0`;
 
 // MongoClient
@@ -56,6 +51,7 @@ async function run() {
         const db = client.db('city_fix_db');
         const issuesCollection = db.collection('issues');
         const usersCollection = db.collection('users');
+        const paymentCollection = db.collection('payments');
 
         // Admin Verify Middle-Ware
         const verifyAdmin = async (req, res, next) => {
@@ -87,9 +83,6 @@ async function run() {
             next()
         };
 
-
-
-
         // POST: API
         app.post('/issues', async (req, res) => {
             const issue = req.body;
@@ -117,8 +110,6 @@ async function run() {
             const result = await issuesCollection.insertOne(issue);
             res.send(result);
         });
-
-        
 
         // issue get api
         app.get('/issues', async (req, res) => {
@@ -148,7 +139,6 @@ async function run() {
                 .toArray();
             res.send({ issues, totalPages, total });
         });
-
 
         // Recently Resolved Api
         app.get('/recent-resolved-issues', async (req, res) =>{
@@ -192,7 +182,6 @@ async function run() {
             const issue = await issuesCollection.findOne({ _id: new ObjectId(id) });
             res.send(issue);
         });
-
 
         // POST: Save User
         app.post("/users", async (req, res) => {
@@ -282,8 +271,6 @@ async function run() {
             res.send(result);
         });
 
-
-
         // New
         app.patch('/issues/:id/assign-staff', verifyFBToken, verifyAdmin, async (req, res) => {
             const issueId = req.params.id
@@ -325,7 +312,6 @@ async function run() {
             const staffs = await usersCollection.find({ role: 'staff' }).toArray();
             res.send(staffs);
         });
-
 
         // Assigned Issues
         app.get('/assigned-issues', verifyFBToken, verifyStaff, async (req, res) => {
@@ -414,11 +400,6 @@ async function run() {
                 .toArray();
             res.send(staffs);
         });
-        
-        
-        
-
-
 
         // Staf create
         app.post('/users-staff', verifyFBToken, verifyAdmin, async (req, res) => {
@@ -458,11 +439,6 @@ async function run() {
             }
         });
 
-
-
-
-
-
         // PUT: Update a staff
         app.put('/users-staff/:id', verifyFBToken, verifyAdmin, async (req, res) => {
             try {
@@ -483,7 +459,6 @@ async function run() {
             }
         });
 
-
         // DELETE: Remove a staff
         app.delete('/users-staff/:id', verifyFBToken, verifyAdmin, async (req, res) => {
             try {
@@ -501,6 +476,83 @@ async function run() {
                 res.status(500).send({ success: false, message: 'Failed to delete staff' });
             }
         });
+
+
+
+
+
+
+
+
+
+        // STRIPE: Payment
+        app.post('/create-checkout-session', async (req, res) => {
+            try {
+                const { amount, email } = req.body;
+                if (!amount || !email) {
+                    return res.status(400).send({ message: "Amount and email are required" });
+                }
+                const session = await stripe.checkout.sessions.create({
+                    payment_method_types: ['card'],
+                    mode: 'payment',
+                    customer_email: email,
+                    line_items: [
+                        {
+                            price_data: {
+                                currency: 'usd',
+                                product_data: {
+                                    name: 'CityFix Premium Subscription',
+                                },
+                                unit_amount: amount * 100,
+                            },
+                            quantity: 1,
+                        },
+                    ],
+                    success_url: `${process.env.SITE_DOMAIN}/dashboard/payment-success?session_id={CHECKOUT_SESSION_ID}`,
+                    cancel_url: `${process.env.SITE_DOMAIN}/dashboard/payment-cancel`,
+                });
+                res.send({ url: session.url });
+            } catch (error) {
+                console.error(error);
+                res.status(500).send({
+                    message: "Stripe checkout session creation failed",
+                    error: error.message,
+                });
+            }
+        });
+
+
+        // Success
+        app.post('/payment-success', verifyFBToken, async (req, res) => {
+            const email = req.decoded_email;
+            const { amount, stripeSessionId } = req.body;
+            try {
+                const result = await usersCollection.updateOne(
+                    { email },
+                    { $set: { isPremium: true } }
+                );
+                if (result.matchedCount === 0) {
+                    return res.status(404).send({ success: false, message: "User not found" });
+                }
+                const paymentRecord = {
+                    userEmail: email,
+                    type: "Premium Subscription",
+                    amount,
+                    currency: "USD",
+                    date: new Date(),
+                    status: "success",
+                    stripeSessionId
+                };
+                await paymentCollection.insertOne(paymentRecord);
+                res.send({ success: true, message: "Subscription upgraded and payment saved!" });
+            } catch (err) {
+                console.error(err);
+                res.status(500).send({ success: false, message: "Failed to upgrade subscription", error: err.message });
+            }
+        });
+
+
+
 
 
 
