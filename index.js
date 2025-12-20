@@ -53,6 +53,7 @@ async function run() {
         const usersCollection = db.collection('users');
         const paymentCollection = db.collection('payments');
 
+        
         // Admin Verify Middle-Ware
         const verifyAdmin = async (req, res, next) => {
         const email = req.decoded_email;
@@ -62,6 +63,7 @@ async function run() {
         }
             next();
         };
+        
 
         // Staff Verify Middle-Ware
         const verifyStaff = async (req, res, next) => {
@@ -73,6 +75,7 @@ async function run() {
             next()
         };
 
+
         // block
         const verifyNotBlocked = async (req, res, next) => {
             const email = req.decoded_email
@@ -83,6 +86,7 @@ async function run() {
             next()
         };
 
+
         // POST: API
         app.post('/issues', async (req, res) => {
             const issue = req.body;
@@ -91,14 +95,11 @@ async function run() {
             if (!user) {
                 return res.status(404).send({ message: "User not found" });
             }
-
-            // block
             if (user.isBlocked) {
                 return res.status(403).send({
                 message: 'Your account is blocked. You cannot report issues.'
                 });
             }
-
             if (!user.isPremium) {
                 const userIssuesCount = await issuesCollection.countDocuments({ submittedBy });
                 if (userIssuesCount >= 3) {
@@ -110,6 +111,7 @@ async function run() {
             const result = await issuesCollection.insertOne(issue);
             res.send(result);
         });
+
 
         // issue get api
         app.get('/issues', async (req, res) => {
@@ -140,6 +142,7 @@ async function run() {
             res.send({ issues, totalPages, total });
         });
 
+
         // Recently Resolved Api
         app.get('/recent-resolved-issues', async (req, res) =>{
             const cursor = issuesCollection
@@ -149,6 +152,7 @@ async function run() {
             const result = await cursor.toArray();
             res.send(result);
         });
+
 
         // Toggle Upvote API
         app.patch('/issues/upvote/:id', async (req, res) => {
@@ -176,12 +180,14 @@ async function run() {
             res.send({ updated: true, liked: !hasLiked });
         });
 
+
         // Get single issue by ID
         app.get('/issues/:id', async (req, res) => {
             const id = req.params.id;
             const issue = await issuesCollection.findOne({ _id: new ObjectId(id) });
             res.send(issue);
         });
+
 
         // POST: Save User
         app.post("/users", async (req, res) => {
@@ -193,6 +199,7 @@ async function run() {
             const result = await usersCollection.insertOne(user);
             res.send(result);
         });
+
 
         // GET: Save User
         app.get('/users', verifyFBToken, async (req, res) => {
@@ -215,6 +222,7 @@ async function run() {
             res.send(result);
         });
 
+
         // My issue
         app.get('/my-issues', verifyFBToken, async (req, res) => {
             const email = req.decoded_email;
@@ -228,6 +236,7 @@ async function run() {
                 .toArray();
             res.send(issues);
         });
+
 
         // PATCH: Update Issue
         app.patch('/issues/:id', verifyFBToken, verifyNotBlocked, async (req, res) => {
@@ -256,6 +265,7 @@ async function run() {
             res.send(result);
         });
 
+
         // DELETE: Delete Issue
         app.delete('/issues/:id', verifyFBToken, verifyNotBlocked, async (req, res) => {
             const id = req.params.id;
@@ -270,6 +280,7 @@ async function run() {
             const result = await issuesCollection.deleteOne({ _id: new ObjectId(id) });
             res.send(result);
         });
+
 
         // New
         app.patch('/issues/:id/assign-staff', verifyFBToken, verifyAdmin, async (req, res) => {
@@ -305,13 +316,15 @@ async function run() {
                 }
             )
             res.send(result)
-        })
+        });
+
 
         // server/routes/users.js
         app.get('/users/staff', verifyFBToken, verifyAdmin, async (req, res) => {
             const staffs = await usersCollection.find({ role: 'staff' }).toArray();
             res.send(staffs);
         });
+
 
         // Assigned Issues
         app.get('/assigned-issues', verifyFBToken, verifyStaff, async (req, res) => {
@@ -322,6 +335,7 @@ async function run() {
                 .toArray()
             res.send(issues)
         });
+
 
         // Assigned Issues
         app.patch('/issues/:id/status', verifyFBToken, verifyStaff, async (req, res) => {
@@ -362,11 +376,13 @@ async function run() {
             res.send(result)
         });
 
+
         // All issue for admin
         app.get('/admin-all-issues', verifyFBToken, verifyAdmin, async (req, res) => {
             const issues = await issuesCollection.find({}).toArray()
             res.send(issues)
         });
+
 
         // GET: All users (admin only)
         app.get('/admin-all-users', verifyFBToken, verifyAdmin, async (req, res) => {
@@ -374,11 +390,13 @@ async function run() {
             res.send(users);
         });
 
+
         // show user in admin dashboard
         app.get('/admin-citizens', verifyFBToken, verifyAdmin, async (req, res) => {
             const users = await usersCollection.find({ role: 'citizen' }).toArray();
             res.send(users);
         });
+
 
         // block user by admin
         app.patch('/users-block/:id', verifyFBToken, verifyAdmin, async (req, res) => {
@@ -392,6 +410,7 @@ async function run() {
             res.send({ success: true });
         });
 
+
         // Manage staff
         app.get('/users-staff', verifyFBToken, verifyAdmin, async (req, res) => {
             const staffs = await usersCollection
@@ -400,6 +419,7 @@ async function run() {
                 .toArray();
             res.send(staffs);
         });
+
 
         // Staf create
         app.post('/users-staff', verifyFBToken, verifyAdmin, async (req, res) => {
@@ -439,6 +459,7 @@ async function run() {
             }
         });
 
+
         // PUT: Update a staff
         app.put('/users-staff/:id', verifyFBToken, verifyAdmin, async (req, res) => {
             try {
@@ -459,6 +480,7 @@ async function run() {
             }
         });
 
+
         // DELETE: Remove a staff
         app.delete('/users-staff/:id', verifyFBToken, verifyAdmin, async (req, res) => {
             try {
@@ -478,20 +500,14 @@ async function run() {
         });
 
 
-
-
-
-
-
-
-
         // STRIPE: Payment
         app.post('/create-checkout-session', async (req, res) => {
             try {
-                const { amount, email } = req.body;
-                if (!amount || !email) {
-                    return res.status(400).send({ message: "Amount and email are required" });
+                const { email } = req.body;
+                if (!email) {
+                    return res.status(400).send({ message: "Email is required" });
                 }
+                const amount = 7.87;
                 const session = await stripe.checkout.sessions.create({
                     payment_method_types: ['card'],
                     mode: 'payment',
@@ -503,13 +519,17 @@ async function run() {
                                 product_data: {
                                     name: 'CityFix Premium Subscription',
                                 },
-                                unit_amount: amount * 100,
+                                unit_amount: Math.round(amount * 100),
                             },
                             quantity: 1,
                         },
                     ],
                     success_url: `${process.env.SITE_DOMAIN}/dashboard/payment-success?session_id={CHECKOUT_SESSION_ID}`,
                     cancel_url: `${process.env.SITE_DOMAIN}/dashboard/payment-cancel`,
+                    metadata: {
+                        plan: 'premium',
+                        userEmail: email
+                    }
                 });
                 res.send({ url: session.url });
             } catch (error) {
@@ -522,44 +542,186 @@ async function run() {
         });
 
 
-        // Success
+        // Success endpoint
         app.post('/payment-success', verifyFBToken, async (req, res) => {
-            const email = req.decoded_email;
-            const { amount, stripeSessionId } = req.body;
             try {
-                const result = await usersCollection.updateOne(
-                    { email },
+                const { stripeSessionId } = req.body;
+                if (!stripeSessionId) {
+                    return res.status(400).send({ success: false, message: "Session ID required" });
+                }
+                const existingPayment = await paymentCollection.findOne({ stripeSessionId });
+                if (existingPayment) {
+                    return res.send({
+                        success: true,
+                        message: "Payment already processed",
+                        paymentRecord: existingPayment
+                    });
+                }
+                const session = await stripe.checkout.sessions.retrieve(stripeSessionId, {
+                    expand: ['payment_intent']
+                });
+                if (session.payment_status !== 'paid') {
+                    return res.status(400).send({ success: false, message: "Payment not completed" });
+                }
+                const amount = session.amount_total / 100;
+                const currency = session.currency;
+                const transactionId = session.payment_intent.id;
+                const customerEmail = session.customer_email;
+                await usersCollection.updateOne(
+                    { email: customerEmail },
                     { $set: { isPremium: true } }
                 );
-                if (result.matchedCount === 0) {
-                    return res.status(404).send({ success: false, message: "User not found" });
-                }
                 const paymentRecord = {
-                    userEmail: email,
+                    userEmail: customerEmail,
                     type: "Premium Subscription",
                     amount,
-                    currency: "USD",
-                    date: new Date(),
-                    status: "success",
-                    stripeSessionId
+                    currency,
+                    transactionId,
+                    stripeSessionId,
+                    payment_status: "paid",
+                    paidAt: new Date()
                 };
                 await paymentCollection.insertOne(paymentRecord);
-                res.send({ success: true, message: "Subscription upgraded and payment saved!" });
+                res.send({
+                    success: true,
+                    message: "Payment verified & subscription upgraded!",
+                    paymentRecord
+                });
             } catch (err) {
                 console.error(err);
-                res.status(500).send({ success: false, message: "Failed to upgrade subscription", error: err.message });
+                res.status(500).send({
+                    success: false,
+                    message: "Payment verification failed",
+                    error: err.message
+                });
             }
         });
 
 
+        // Get all payments of logged-in user
+        app.get('/my-payments', verifyFBToken, async (req, res) => {
+            try {
+                const email = req.decoded_email;
+                const payments = await paymentCollection
+                    .find({ userEmail: email })
+                    .sort({ paidAt: -1 })
+                    .toArray();
+                res.send(payments);
+            } catch (err) {
+                console.error(err);
+                res.status(500).send({ message: "Failed to fetch payments", error: err.message });
+            }
+        });
 
 
+        // Boost Payment
+        app.post('/create-boost-session/:issueId', async (req, res) => {
+            try {
+                const { email } = req.body;
+                const { issueId } = req.params;
+                if (!email || !issueId) {
+                    return res.status(400).send({ message: "Email and Issue ID are required" });
+                }
+                const amountUSD = 1;
+                const session = await stripe.checkout.sessions.create({
+                    payment_method_types: ['card'],
+                    mode: 'payment',
+                    customer_email: email,
+                    line_items: [
+                        {
+                            price_data: {
+                                currency: 'usd',
+                                product_data: { name: 'Boost Issue' },
+                                unit_amount: Math.round(amountUSD * 100),
+                            },
+                            quantity: 1,
+                        },
+                    ],
+                    success_url: `${process.env.SITE_DOMAIN}/dashboard/boost-success?issueId=${issueId}&session_id={CHECKOUT_SESSION_ID}`,
+                    cancel_url: `${process.env.SITE_DOMAIN}/dashboard/boost-cancel`,
+                    metadata: {
+                        issueId,
+                        userEmail: email
+                    }
+                });
+                res.send({ url: session.url });
+            } catch (error) {
+                console.error(error);
+                res.status(500).send({
+                    message: "Stripe boost session creation failed",
+                    error: error.message,
+                });
+            }
+        });
 
 
+        // boost-issue by id
+        app.post('/boost-issue/:id', verifyFBToken, verifyNotBlocked, async (req, res) => {
+            const issueId = req.params.id;
+            const email = req.decoded_email;
+            const issue = await issuesCollection.findOne({ _id: new ObjectId(issueId) });
+            if (!issue) return res.status(404).send({ message: 'Issue not found' });
+            if (issue.submittedBy !== email) return res.status(403).send({ message: 'Forbidden' });
+            const session = await stripe.checkout.sessions.create({
+                payment_method_types: ['card'],
+                mode: 'payment',
+                customer_email: email,
+                line_items: [
+                    {
+                        price_data: {
+                            currency: 'usd',
+                            product_data: { name: 'Boost Issue' },
+                            unit_amount: 80,
+                        },
+                        quantity: 1,
+                    }
+                ],
+                success_url: `${process.env.SITE_DOMAIN}/dashboard/boost-success?issueId=${issueId}&session_id={CHECKOUT_SESSION_ID}`,
+                cancel_url: `${process.env.SITE_DOMAIN}/dashboard/boost-cancel`,
+                metadata: { issueId, userEmail: email }
+            });
+            res.send({ url: session.url });
+        });
 
 
-
-
+        // Boost success
+        app.post('/boost-success', verifyFBToken, async (req, res) => {
+            try {
+                const { stripeSessionId } = req.body;
+                if (!stripeSessionId) return res.status(400).send({ message: 'Session ID required' });
+                const session = await stripe.checkout.sessions.retrieve(stripeSessionId, {
+                    expand: ['payment_intent']
+                });
+                if (session.payment_status !== 'paid') 
+                    return res.status(400).send({ message: 'Payment not completed' });
+                const issueId = session.metadata.issueId;
+                await issuesCollection.updateOne(
+                    { _id: new ObjectId(issueId) },
+                    { $set: { isBoosted: true } }
+                );
+                const transactionId = session.payment_intent?.id || session.payment_intent;
+                const paymentRecord = {
+                    transactionId,
+                    userEmail: session.metadata.userEmail || null,
+                    type: "Boost Payment",
+                    amount: session.amount_total / 100,
+                    currency: session.currency,
+                    stripeSessionId,
+                    issueId,
+                    payment_status: 'paid',
+                    paidAt: new Date(session.created * 1000)
+                };
+                await paymentCollection.insertOne(paymentRecord);
+                res.send({
+                    success: true,
+                    message: 'Issue boosted successfully',
+                    paymentRecord
+                });
+            } catch (err) {
+                console.error(err);
+                res.status(500).send({ message: 'Boost success failed', error: err.message });
+            }
+        });
 
 
 
