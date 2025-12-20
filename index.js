@@ -12,7 +12,11 @@ app.use(express.json());
 
 
 const admin = require("firebase-admin");
-const serviceAccount = require("./city-fix-firebase-adminsdk.json");
+
+// const serviceAccount = require("./city-fix-firebase-adminsdk.json");
+const decoded = Buffer.from(process.env.FB_SERVICE_KEY, 'base64').toString('utf8')
+const serviceAccount = JSON.parse(decoded);
+
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
@@ -46,14 +50,14 @@ const client = new MongoClient(uri, {
 
 async function run() {
     try{
-        await client.connect();
+        // await client.connect();
 
         const db = client.db('city_fix_db');
         const issuesCollection = db.collection('issues');
         const usersCollection = db.collection('users');
         const paymentCollection = db.collection('payments');
 
-        
+
         // Admin Verify Middle-Ware
         const verifyAdmin = async (req, res, next) => {
         const email = req.decoded_email;
@@ -201,15 +205,24 @@ async function run() {
         });
 
 
-        // GET: Save User
+        // GET: Save User with latestPayment
         app.get('/users', verifyFBToken, async (req, res) => {
             const email = req.decoded_email;
             const user = await usersCollection.findOne({ email });
             if (!user) {
                 return res.status(404).send({ message: "User not found" });
             }
-            res.send(user);
+            const latestPayment = await paymentCollection
+                .find({ userEmail: email })
+                .sort({ paidAt: -1 })
+                .limit(1)
+                .toArray();
+            res.send({
+                ...user,
+                latestPayment: latestPayment[0] || null
+            });
         });
+
 
         // PUT: Update User
         app.put('/users/:email', async (req, res) => {
@@ -725,33 +738,26 @@ async function run() {
 
 
 
+        app.get('/admin-all-payments', verifyFBToken, verifyAdmin, async (req, res) => {
+            try {
+                const { type, status } = req.query;
+                const query = {};
+                if (type) query.type = type;
+                if (status) query.payment_status = status;
+                const payments = await paymentCollection
+                    .find(query)
+                    .sort({ paidAt: -1 })
+                    .toArray();
+
+                res.send(payments);
+            } catch (err) {
+                console.error(err);
+                res.status(500).send({ message: 'Failed to fetch payments' });
+            }
+        });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
-        await client.db("admin").command({ ping: 1 });
+        // await client.db("admin").command({ ping: 1 });
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
     }
     finally{
